@@ -27,7 +27,7 @@ export default function App() {
         ?
         <View style={styles.container}>
           <Text h2 style={styles.title}>
-            Messenger
+            RefereeAPP
           </Text>
           <Button
             size="lg"

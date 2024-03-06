@@ -1,2 +1,1 @@
-export const BACKEND_URL = 'https://messenger-be-ff66dbd397d1.herokuapp.com/api'
-// export const BACKEND_URL = 'http://localhost:3000'
+export const BACKEND_URL = 'https://referee-app-7df9c196662d.herokuapp.com/api'

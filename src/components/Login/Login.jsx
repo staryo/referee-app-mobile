@@ -29,10 +29,10 @@ export default function Login({ setAuth, setNotification, setNotificationOpen })
         <View style={{ paddingBottom: 20, width: "100%", gap: 10, alignItems: "center", backgroundColor: "#343a40" }}>
           <View style={{ gap: 10, flexDirection: "row", alignItems: "center" }}>
             <Text h2 style={styles.title}>
-              <Icon name="industry" type="font-awesome" color="white"/>
+              <Icon name="star" type="font-awesome" color="white"/>
             </Text>
             <Text h2 style={styles.title}>
-              InduApp
+              RefereeAPP
             </Text>
           </View>
         </View>
