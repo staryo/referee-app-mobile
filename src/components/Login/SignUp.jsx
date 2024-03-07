@@ -2,17 +2,21 @@ import { StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
 import { Icon } from "react-native-elements";
-import { login } from "../../api/auth";
+import { login, signUp } from "../../api/auth";
 
-export default function Login({ setAuth, setNotification, setNotificationOpen }) {
+export default function SignUp({ setAuth, setNotification, setNotificationOpen }) {
   const [loadingState, setLoadingState] = useState(false);
   const [email, updateEmail] = useState("");
   const [password, updatePassword] = useState("");
+  const [repeatPassword, updateRepeatPassword] = useState("");
+  const [firstName, updateFirstName] = useState("");
+  const [lastName, updateLastName] = useState("");
 
-  const handleLogIn = async () => {
+  const handleSignUp = async () => {
     setLoadingState(true);
     try {
-      const result = await login(email, password);
+      await signUp({ email, firstName, lastName, password, repeatPassword });
+      const result = await login(email, password)
       setAuth(result);
       setNotification(`Hello, ${result?.first_name} ${result?.last_name}`)
     } catch (error) {
@@ -35,9 +39,31 @@ export default function Login({ setAuth, setNotification, setNotificationOpen })
         />
         <TextInput
           style={styles.input}
+          onChangeText={updateFirstName}
+          value={firstName}
+          placeholder="First name"
+          placeholderTextColor="#aaa"
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={updateLastName}
+          value={lastName}
+          placeholder="Last name"
+          placeholderTextColor="#aaa"
+        />
+        <TextInput
+          style={styles.input}
           onChangeText={updatePassword}
           value={password}
           placeholder="Password"
+          placeholderTextColor="#aaa"
+          secureTextEntry={true}
+        />
+        <TextInput
+          style={styles.input}
+          onChangeText={updateRepeatPassword}
+          value={repeatPassword}
+          placeholder="Repeat password"
           placeholderTextColor="#aaa"
           secureTextEntry={true}
         />
@@ -49,10 +75,11 @@ export default function Login({ setAuth, setNotification, setNotificationOpen })
             borderRadius: 10,
             marginVertical: 10,
           }}
-          onPress={handleLogIn}>
-          <Icon name="login" color="white" style={{ marginHorizontal: 5 }}/>
+          onPress={handleSignUp}>
+          <Icon name="address-book"   type='font-awesome'
+                color="white" style={{ marginHorizontal: 5 }}/>
           <Text h4 style={{ color: "white", marginHorizontal: 5 }}>
-            Login
+            SignUp
           </Text>
         </Button>
       </View>

@@ -1,50 +1,34 @@
-import Login from "./src/components/Login/Login";
+import Authorization from "./src/components/Login/Authorization";
 import { useState } from "react";
 import { Alert, Modal, StyleSheet, View } from "react-native";
 import { Button, Text } from "@rneui/themed";
-import { logout } from "./src/api/auth";
-import { Icon } from "react-native-elements";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Tournaments from "./src/components/Tournaments/Tournaments";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
   const [notification, setNotification] = useState("");
   const [notificationOpen, setNotificationOpen] = useState(false);
-  console.log(auth)
-  const handleLogOut = async () => {
-    try {
-      await logout();
-      setAuth(null);
-      setNotification(`Bye`)
-    } catch (error) {
-      setNotification("Logout error!");
-    }
-    setNotificationOpen(true)
-  };
+  const Stack = createNativeStackNavigator();
 
   return (
     <>
+
       {auth
         ?
-        <View style={styles.container}>
-          <Text h2 style={styles.title}>
-            RefereeAPP
-          </Text>
-          <Button
-            size="lg"
-            buttonStyle={{
-              height: 60,
-              borderRadius: 10,
-              marginVertical: 10,
-            }}
-            onPress={handleLogOut}>
-            <Icon name="logout" color="white" style={{ marginHorizontal: 5 }}/>
-            <Text h4 style={{ color: "white", marginHorizontal: 5 }}>
-              Logout
-            </Text>
-          </Button>
-
-        </View>
-        : <Login
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen name="Tournaments">
+              {(props) => <Tournaments {...props}
+                setAuth={setAuth}
+                setNotification={setNotification}
+                setNotificationOpen={setNotificationOpen}
+              />}
+            </Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+        : <Authorization
           setAuth={setAuth}
           setNotificationOpen={setNotificationOpen}
           setNotification={setNotification}

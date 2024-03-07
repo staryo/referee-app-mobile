@@ -4,14 +4,14 @@ import { BACKEND_URL } from "../const";
 async function signUp(data) {
   const { email, password, repeatPassword, firstName, lastName } = data;
   try {
-    const result = await axios.post(`${BACKEND_URL}/signUp`, {
+    const result = await axios.post(`${BACKEND_URL}/user/create`, {
       email,
       password,
-      repeatPassword,
-      firstName,
-      lastName,
+      repeat_password: repeatPassword,
+      first_name: firstName,
+      last_name: lastName,
     });
-    return new Promise((resolve) => resolve(result));
+    return result.data
   } catch (err) {
     return new Promise((resolve, reject) => reject(err));
   }
