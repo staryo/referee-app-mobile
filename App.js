@@ -7,6 +7,7 @@ import Tournaments from "./src/components/Tournaments/Tournaments";
 import { Icon } from "react-native-elements";
 import { logout } from "./src/api/auth";
 import CreateTournament from "./src/components/Tournaments/CreateTournament";
+import OneTournament from "./src/components/Tournaments/OneTournament";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -32,6 +33,7 @@ export default function App() {
             headerStyle: {
               backgroundColor: "#343a40",
             },
+            animation: "fade_from_bottom",
             headerRight: () => (
               <Button
                 size="sm"
@@ -46,8 +48,20 @@ export default function App() {
               </Button>
             ),
           }}>
-            <Stack.Screen name="Tournaments" component={Tournaments} initialParams={{ check: 0 }}/>
-            <Stack.Screen name="New Tournament" component={CreateTournament} />
+            <Stack.Screen
+              name="Tournaments"
+              component={Tournaments}
+              initialParams={{ check: 0 }}
+            />
+            <Stack.Screen
+              name="New Tournament"
+              component={CreateTournament}
+            />
+            <Stack.Screen
+              name="Tournament"
+              component={OneTournament}
+              options={({ route }) => ({ title: route.params.title })}
+            />
           </Stack.Navigator>
         </NavigationContainer>
         : <Authorization setAuth={setAuth}/>

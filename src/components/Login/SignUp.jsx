@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
 import { Icon } from "react-native-elements";
@@ -19,7 +19,7 @@ export default function SignUp({ setAuth }) {
       const result = await login(email, password)
       setAuth(result);
     } catch (error) {
-      alert(`User creation error. ${error}`);
+      Alert.alert(`User creation error. ${error}`);
     }
     setLoadingState(null);
   };

@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
 import { Icon } from "react-native-elements";
@@ -15,7 +15,7 @@ export default function Login({ setAuth }) {
       const result = await login(email, password);
       setAuth(result);
     } catch (error) {
-      alert("Wrong login or password")
+      Alert.alert("Wrong login or password")
     }
     setLoadingState(null);
   };

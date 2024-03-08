@@ -1,4 +1,4 @@
-import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useEffect, useState } from "react";
 import { getAllTournaments } from "../../api/tournaments";
 import { FAB, Text } from "@rneui/themed";
@@ -36,36 +36,39 @@ export default function Tournaments({ navigation, route }) {
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
 
           {tournaments.map((row) => (
-              <View style={{
-                flexDirection: "row",
-                borderStyle: "solid",
-                borderWidth: 1,
-                borderColor: "white",
-                padding: 10,
-                width: "100%",
-                justifyContent: "space-between",
-                borderRadius: 5,
-                margin: 5,
-              }}
-                    key={row.id}>
+              <TouchableOpacity key={row.id} onPress={
+                () => navigation.navigate("Tournament", { title: row.name, tournamentId: row.id })
+              }>
                 <View style={{
-                  flex: 3,
+                  flexDirection: "row",
+                  borderStyle: "solid",
+                  borderWidth: 1,
+                  borderColor: "white",
+                  padding: 10,
+                  width: "100%",
+                  justifyContent: "space-between",
+                  borderRadius: 5,
+                  margin: 5,
                 }}>
-                  <Text h4 style={{ color: "white" }}>
-                    {row.name}
-                  </Text>
+                  <View style={{
+                    flex: 3,
+                  }}>
+                    <Text h4 style={{ color: "white" }}>
+                      {row.name}
+                    </Text>
+                  </View>
+                  <View style={{ flexDirection: "column", flex: 1 }}>
+                    <Text style={{ color: "white" }}>
+                      {row.sport_name}
+                    </Text>
+                    <Text style={{ color: "white", fontStyle: "italic" }}>
+                      {
+                        moment(row.createdAt).format("L")
+                      }
+                    </Text>
+                  </View>
                 </View>
-                <View style={{ flexDirection: "column", flex: 1 }}>
-                  <Text style={{ color: "white" }}>
-                    {row.sport_name}
-                  </Text>
-                  <Text style={{ color: "white", fontStyle: "italic" }}>
-                    {
-                      moment(row.createdAt).format("L")
-                    }
-                  </Text>
-                </View>
-              </View>
+              </TouchableOpacity>
             ),
           )}
         </ScrollView>
@@ -92,6 +95,5 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 10,
     alignItems: "center",
-    justifyContent: "center",
   },
 });

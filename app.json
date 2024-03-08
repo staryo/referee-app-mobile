@@ -8,14 +8,14 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#15202b"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#15202b"
       },
-      "package": "com.artem.stolov.AwesomeProject"
+      "package": "com.artem.stolov.RefereeApp"
     },
     "extra": {
       "eas": {

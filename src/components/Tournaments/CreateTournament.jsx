@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { createTournament } from "../../api/tournaments";
 import { Button, Text } from "@rneui/themed";
@@ -18,7 +18,7 @@ export default function CreateTournament({ navigation }) {
       await createTournament({ tournamentName, sportsName, defaultNumberOfPeriods, defaultPeriodDuration });
       navigation.navigate("Tournaments", { check: Math.floor(Math.random() * 100) })
     } catch (error) {
-      alert(`Error ${error}`);
+      Alert.alert(`Error ${error}`);
     }
     setLoadingState(null);
   };

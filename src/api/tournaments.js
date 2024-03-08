@@ -10,6 +10,15 @@ async function getAllTournaments() {
   }
 }
 
+async function getTournament({ id }) {
+  try {
+    const result = await axios.get(`${BACKEND_URL}/tournament/data/${id}`);
+    return result.data
+  } catch (err) {
+    return new Promise((resolve, reject) => reject(err));
+  }
+}
+
 async function createTournament(data) {
   const { tournamentName, sportsName, defaultNumberOfPeriods, defaultPeriodDuration } = data;
   try {
@@ -25,4 +34,4 @@ async function createTournament(data) {
   }
 }
 
-export { getAllTournaments, createTournament };
+export { getAllTournaments, createTournament, getTournament };
