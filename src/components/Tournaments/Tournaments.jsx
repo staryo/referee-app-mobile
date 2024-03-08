@@ -12,11 +12,19 @@ export default function Tournaments({ navigation, route }) {
   const [tournaments, setTournaments] = useState([])
 
   useEffect(() => {
-    getAllTournaments().then((res) => setTournaments(res))
+    setRefreshing(true)
+    getAllTournaments().then((res) => {
+      setTournaments(res)
+      setRefreshing(false)
+    })
   }, [check]);
 
   const onRefresh = () => {
-    getAllTournaments().then((res) => setTournaments(res))
+    setRefreshing(true)
+    getAllTournaments().then((res) => {
+      setTournaments(res)
+      setRefreshing(false)
+    })
   }
 
   return (
