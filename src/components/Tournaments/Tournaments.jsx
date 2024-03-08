@@ -37,7 +37,10 @@ export default function Tournaments({ navigation, route }) {
 
           {tournaments.map((row) => (
               <TouchableOpacity key={row.id} onPress={
-                () => navigation.navigate("Tournament", { title: row.name, tournamentId: row.id })
+                () => navigation.navigate(
+                  "Tournament",
+                  { title: row.name, tournamentId: row.id },
+                )
               }>
                 <View style={{
                   flexDirection: "row",
