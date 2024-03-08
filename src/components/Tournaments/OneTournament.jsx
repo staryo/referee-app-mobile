@@ -19,7 +19,7 @@ export default function OneTournament({ navigation, route }) {
     <>
       <SafeAreaView style={styles.container}>
         <ButtonGroup
-          buttons={["MATCHES", "PLAYERS", "TOURNAMENT"]}
+          buttons={["MATCHES", "PLAYERS", "TEAMS", "SETTINGS"]}
           buttonStyle={{
             backgroundColor: "#343a40",
             borderRadius: 10
@@ -38,7 +38,7 @@ export default function OneTournament({ navigation, route }) {
           containerStyle={{
             marginVertical: 10,
             borderWidth: 0,
-            gap: 10,
+            gap: 5,
             backgroundColor: "#15202b"
           }}
         />

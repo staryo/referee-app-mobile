@@ -45,16 +45,21 @@ export default function Tournaments({ navigation, route }) {
                 <View style={{
                   flexDirection: "row",
                   borderStyle: "solid",
-                  borderWidth: 1,
+                  borderWidth: 0,
                   borderColor: "white",
                   padding: 10,
                   width: "100%",
                   justifyContent: "space-between",
-                  borderRadius: 5,
-                  margin: 5,
+                  borderRadius: 0,
+                  marginVertical: 1,
+                  marginHorizontal: 0,
+                  backgroundColor: "#15202b",
+                  height: 70
                 }}>
                   <View style={{
                     flex: 3,
+                    height: "100%",
+                    justifyContent: "center",
                   }}>
                     <Text h4 style={{ color: "white" }}>
                       {row.name}
@@ -87,16 +92,17 @@ export default function Tournaments({ navigation, route }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#15202b",
+    backgroundColor: "black",
     alignItems: "center",
     justifyContent: "flex-start",
-    gap: 0,
     width: "100%",
-    paddingHorizontal: 10,
+    margin: 0,
+    padding: 0
   },
   scrollView: {
     flex: 1,
-    paddingVertical: 10,
     alignItems: "center",
+    width: "100%",
+    margin: 0
   },
 });
