@@ -4,7 +4,7 @@ import { Button, Text } from "@rneui/themed";
 import { Icon } from "react-native-elements";
 import { login } from "../../api/auth";
 
-export default function Login({ setAuth, setNotification, setNotificationOpen }) {
+export default function Login({ setAuth }) {
   const [loadingState, setLoadingState] = useState(false);
   const [email, updateEmail] = useState("");
   const [password, updatePassword] = useState("");
@@ -14,11 +14,9 @@ export default function Login({ setAuth, setNotification, setNotificationOpen })
     try {
       const result = await login(email, password);
       setAuth(result);
-      setNotification(`Hello, ${result?.first_name} ${result?.last_name}`)
     } catch (error) {
-      setNotification("Authorization error! Wrong login or password.");
+      alert("Wrong login or password")
     }
-    setNotificationOpen(true)
     setLoadingState(null);
   };
 

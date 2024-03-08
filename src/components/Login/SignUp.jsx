@@ -4,7 +4,7 @@ import { Button, Text } from "@rneui/themed";
 import { Icon } from "react-native-elements";
 import { login, signUp } from "../../api/auth";
 
-export default function SignUp({ setAuth, setNotification, setNotificationOpen }) {
+export default function SignUp({ setAuth }) {
   const [loadingState, setLoadingState] = useState(false);
   const [email, updateEmail] = useState("");
   const [password, updatePassword] = useState("");
@@ -18,17 +18,15 @@ export default function SignUp({ setAuth, setNotification, setNotificationOpen }
       await signUp({ email, firstName, lastName, password, repeatPassword });
       const result = await login(email, password)
       setAuth(result);
-      setNotification(`Hello, ${result?.first_name} ${result?.last_name}`)
     } catch (error) {
-      setNotification("Authorization error! Wrong login or password.");
+      alert(`User creation error. ${error}`);
     }
-    setNotificationOpen(true)
     setLoadingState(null);
   };
 
   return (
     <>
-      <View style={{ width: "90%", gap: 10, justifyContent: "center", marginVertical: 50, flex: 1 }}>
+      <View style={styles.container}>
         <TextInput
           style={styles.input}
           onChangeText={updateEmail}
@@ -89,14 +87,11 @@ export default function SignUp({ setAuth, setNotification, setNotificationOpen }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#15202b",
-    alignItems: "center",
-    justifyContent: "flex-start",
-    gap: 20,
-    width: "100%",
-    alignSelf: "center",
-    height: "100%",
+    width: "90%",
+    gap: 10,
+    justifyContent: "center",
+    marginVertical: 50,
+    flex: 1
   },
   input: {
     width: "100%",

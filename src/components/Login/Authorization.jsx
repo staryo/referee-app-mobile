@@ -5,14 +5,29 @@ import { Icon } from "react-native-elements";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
-export default function Authorization({ setAuth, setNotification, setNotificationOpen }) {
+export default function Authorization({ setAuth }) {
   const [isLogin, setIsLogin] = useState(true)
 
   return (
     <>
       <View style={styles.container}>
         <View style={{ paddingBottom: 20, width: "100%", gap: 10, alignItems: "center", backgroundColor: "#343a40" }}>
-          <View style={{ gap: 10, flexDirection: "row", alignItems: "center" }}>
+          <View style={{ gap: 10, flexDirection: "row", alignItems: "center", marginTop: 50 }}>
+            <Button
+              size="sm"
+              buttonStyle={{
+                height: 40,
+                borderRadius: 10,
+                borderColor: 'white'
+              }}
+              type="outline"
+              onPress={() => {
+                setIsLogin(!isLogin)
+              }}>
+              <Text style={{ color: "white", marginHorizontal: 5 }}>
+                {isLogin ? "SignUp" : "Login"}
+              </Text>
+            </Button>
             <Text h2 style={styles.title}>
               <Icon name="star" type="font-awesome" color="white"/>
             </Text>
@@ -21,35 +36,15 @@ export default function Authorization({ setAuth, setNotification, setNotificatio
             </Text>
           </View>
         </View>
+
         {isLogin
           ? <Login
             setAuth={setAuth}
-            setNotificationOpen={setNotificationOpen}
-            setNotification={setNotification}
           />
           : <SignUp
             setAuth={setAuth}
-            setNotificationOpen={setNotificationOpen}
-            setNotification={setNotification}
           />
         }
-        <View style={{ width: "90%", justifyContent: "center" }}>
-          <Button
-            size="lg"
-            buttonStyle={{
-              height: 60,
-              borderRadius: 10,
-              marginVertical: 10,
-            }}
-            onPress={() => {
-              setIsLogin(!isLogin)
-            }}>
-            <Text h4 style={{ color: "white", marginHorizontal: 5 }}>
-              {isLogin ? "SignUp" : "Login"}
-            </Text>
-          </Button>
-        </View>
-        {/*<StatusBar style="light"/>*/}
       </View>
     </>
   );
@@ -77,7 +72,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   title: {
-    marginTop: 50,
     color: "white",
     fontWeight: "bold",
   },

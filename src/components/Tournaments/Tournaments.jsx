@@ -1,58 +1,89 @@
-import { StyleSheet, View } from "react-native";
-import { Button, Text } from "@rneui/themed";
-import { Icon } from "react-native-elements";
-import { logout } from "../../api/auth";
+import { RefreshControl, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from "react-native";
+import { useEffect, useState } from "react";
+import { getAllTournaments } from "../../api/tournaments";
+import { FAB, Text } from "@rneui/themed";
+import moment from "moment";
 
-export default function Tournaments({ navigation, setAuth, setNotification, setNotificationOpen }) {
-  const handleLogOut = async () => {
-    try {
-      await logout();
-      setAuth(null);
-      setNotification(`Bye`)
-    } catch (error) {
-      console.log(error)
-      setNotification("Logout error!");
-    }
-    setNotificationOpen(true)
-  };
+
+export default function Tournaments({ navigation, route }) {
+
+  const { check } = route.params;
+  const [refreshing, setRefreshing] = useState(false);
+  const [tournaments, setTournaments] = useState([])
+
+  useEffect(() => {
+    getAllTournaments().then((res) => setTournaments(res))
+  }, [check]);
+
+  const onRefresh = () => {
+    getAllTournaments().then((res) => setTournaments(res))
+  }
 
   return (
-    <View style={styles.container}>
-      <View style={{
-        alignSelf: "flex-end"
-      }}>
-        <Button
-          size="sm"
-          buttonStyle={{
-            height: 60,
-            borderRadius: 10,
-            marginVertical: 10,
-          }}
-          onPress={handleLogOut}>
-          <Icon name="logout" color="white" style={{ marginHorizontal: 5 }}/>
-          <Text h4 style={{ color: "white", marginHorizontal: 5 }}>
-            Logout
-          </Text>
-        </Button>
-      </View>
-    </View>
+    <>
+      <SafeAreaView style={styles.container}>
+        <ScrollView
+          contentContainerStyle={styles.scrollView}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
+
+          {tournaments.map((row) => (
+              <View style={{
+                flexDirection: "row",
+                borderStyle: "solid",
+                borderWidth: 1,
+                borderColor: "white",
+                padding: 10,
+                width: "100%",
+                justifyContent: "space-between",
+                borderRadius: 5,
+                margin: 5,
+              }}
+                    key={row.id}>
+                <View style={{
+                  flex: 3,
+                }}>
+                  <Text h4 style={{ color: "white" }}>
+                    {row.name}
+                  </Text>
+                </View>
+                <View style={{ flexDirection: "column", flex: 1 }}>
+                  <Text style={{ color: "white" }}>
+                    {row.sport_name}
+                  </Text>
+                  <Text style={{ color: "white", fontStyle: "italic" }}>
+                    {
+                      moment(row.createdAt).format('L')
+                    }
+                  </Text>
+                </View>
+              </View>
+            ),
+          )}
+        </ScrollView>
+
+        <FAB placement="right" icon={{ name: "add", color: "white" }} onPress={() => {
+          navigation.navigate("New Tournament")
+        }}/>
+
+      </SafeAreaView>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#15202b",
     alignItems: "center",
     justifyContent: "flex-start",
-    gap: 20,
+    gap: 0,
     width: "100%",
-    alignSelf: "center",
-    height: "100%",
+    paddingHorizontal: 10,
   },
-  title: {
-    marginTop: 5,
-    color: "white",
-    fontWeight: "bold",
+  scrollView: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
