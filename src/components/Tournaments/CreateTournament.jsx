@@ -1,10 +1,8 @@
 import { StyleSheet, TextInput, View } from "react-native";
-import { useEffect, useState } from "react";
-import { createTournament, getAllTournaments } from "../../api/tournaments";
-import { Button, FAB, Text } from "@rneui/themed";
-import moment from "moment";
+import { useState } from "react";
+import { createTournament } from "../../api/tournaments";
+import { Button, Text } from "@rneui/themed";
 import { Icon } from "react-native-elements";
-import { login, signUp } from "../../api/auth";
 
 
 export default function CreateTournament({ navigation }) {
@@ -18,7 +16,7 @@ export default function CreateTournament({ navigation }) {
     setLoadingState(true);
     try {
       await createTournament({ tournamentName, sportsName, defaultNumberOfPeriods, defaultPeriodDuration });
-      navigation.navigate('Tournaments', {check: Math.floor(Math.random() * 100)})
+      navigation.navigate("Tournaments", { check: Math.floor(Math.random() * 100) })
     } catch (error) {
       alert(`Error ${error}`);
     }
@@ -67,7 +65,7 @@ export default function CreateTournament({ navigation }) {
           width: "100%",
         }}
         onPress={handleCreate}>
-        <Icon name="save" type='font-awesome'
+        <Icon name="save" type="font-awesome"
               color="white" style={{ marginHorizontal: 5 }}/>
         <Text h4 style={{ color: "white", marginHorizontal: 5 }}>
           Save
