@@ -1,4 +1,4 @@
-import { RefreshControl, SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from "react-native";
+import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { useEffect, useState } from "react";
 import { getAllTournaments } from "../../api/tournaments";
 import { FAB, Text } from "@rneui/themed";
@@ -61,7 +61,7 @@ export default function Tournaments({ navigation, route }) {
                   </Text>
                   <Text style={{ color: "white", fontStyle: "italic" }}>
                     {
-                      moment(row.createdAt).format('L')
+                      moment(row.createdAt).format("L")
                     }
                   </Text>
                 </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
     paddingVertical: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
