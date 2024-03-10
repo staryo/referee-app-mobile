@@ -8,6 +8,8 @@ import { Icon } from "react-native-elements";
 import { logout } from "./src/api/auth";
 import CreateTournament from "./src/components/Tournaments/CreateTournament";
 import OneTournament from "./src/components/Tournaments/OneTournament";
+import CreatePlayer from "./src/components/Tournaments/CreatePlayer";
+import CreateTeam from "./src/components/Tournaments/CreateTeam";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -60,6 +62,16 @@ export default function App() {
             <Stack.Screen
               name="Tournament"
               component={OneTournament}
+              options={({ route }) => ({ title: route.params.title })}
+            />
+            <Stack.Screen
+              name="New Player"
+              component={CreatePlayer}
+              options={({ route }) => ({ title: route.params.title })}
+            />
+            <Stack.Screen
+              name="New Team"
+              component={CreateTeam}
               options={({ route }) => ({ title: route.params.title })}
             />
           </Stack.Navigator>

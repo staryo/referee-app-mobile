@@ -54,7 +54,7 @@ export default function Tournaments({ navigation, route }) {
                   marginVertical: 1,
                   marginHorizontal: 0,
                   backgroundColor: "#15202b",
-                  height: 70
+                  height: 70,
                 }}>
                   <View style={{
                     flex: 3,
@@ -65,7 +65,9 @@ export default function Tournaments({ navigation, route }) {
                       {row.name}
                     </Text>
                   </View>
-                  <View style={{ flexDirection: "column", flex: 1 }}>
+                  <View style={{
+                    flexDirection: "column", flex: 1, justifyContent: "center",
+                  }}>
                     <Text style={{ color: "white" }}>
                       {row.sport_name}
                     </Text>
@@ -97,12 +99,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     width: "100%",
     margin: 0,
-    padding: 0
+    padding: 0,
   },
   scrollView: {
     flex: 1,
     alignItems: "center",
     width: "100%",
-    margin: 0
+    margin: 0,
   },
 });
