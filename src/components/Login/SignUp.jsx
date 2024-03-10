@@ -1,7 +1,7 @@
 import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
-import { Icon } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
 import { login, signUp } from "../../api/auth";
 
 export default function SignUp({ setAuth }) {
@@ -74,7 +74,7 @@ export default function SignUp({ setAuth }) {
             marginVertical: 10,
           }}
           onPress={handleSignUp}>
-          <Icon name="address-book"   type='font-awesome'
+          <Icon name="user-plus" size={20}
                 color="white" style={{ marginHorizontal: 5 }}/>
           <Text h4 style={{ color: "white", marginHorizontal: 5 }}>
             SignUp

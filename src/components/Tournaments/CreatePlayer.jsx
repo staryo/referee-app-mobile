@@ -1,7 +1,7 @@
 import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
-import { Icon } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
 import { createPlayer } from "../../api/players";
 
 
@@ -61,10 +61,10 @@ export default function CreatePlayer({ navigation, route }) {
           width: "100%",
         }}
         onPress={handleCreate}>
-        <Icon name="save" type="font-awesome"
-              color="white" style={{ marginHorizontal: 5 }}/>
+        <Icon name="plus-square"
+              color="white" size={20} style={{ marginHorizontal: 5 }}/>
         <Text h4 style={{ color: "white", marginHorizontal: 5 }}>
-          Save
+          Add
         </Text>
       </Button>
 

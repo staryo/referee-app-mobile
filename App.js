@@ -10,6 +10,7 @@ import CreateTournament from "./src/components/Tournaments/CreateTournament";
 import OneTournament from "./src/components/Tournaments/OneTournament";
 import CreatePlayer from "./src/components/Tournaments/CreatePlayer";
 import CreateTeam from "./src/components/Tournaments/CreateTeam";
+import CreateMatch from "./src/components/Tournaments/CreateMatch";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -72,6 +73,11 @@ export default function App() {
             <Stack.Screen
               name="New Team"
               component={CreateTeam}
+              options={({ route }) => ({ title: route.params.title })}
+            />
+            <Stack.Screen
+              name="New Match"
+              component={CreateMatch}
               options={({ route }) => ({ title: route.params.title })}
             />
           </Stack.Navigator>

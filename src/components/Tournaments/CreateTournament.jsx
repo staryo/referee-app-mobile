@@ -2,7 +2,7 @@ import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { createTournament } from "../../api/tournaments";
 import { Button, Text } from "@rneui/themed";
-import { Icon } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 
 export default function CreateTournament({ navigation }) {
@@ -65,10 +65,10 @@ export default function CreateTournament({ navigation }) {
           width: "100%",
         }}
         onPress={handleCreate}>
-        <Icon name="save" type="font-awesome"
-              color="white" style={{ marginHorizontal: 5 }}/>
+        <Icon name="plus-square"
+              color="white" size={20} style={{ marginHorizontal: 5 }}/>
         <Text h4 style={{ color: "white", marginHorizontal: 5 }}>
-          Save
+          Add
         </Text>
       </Button>
 

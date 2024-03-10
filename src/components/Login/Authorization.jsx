@@ -1,7 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
-import { Icon } from "react-native-elements";
+import Icon from "react-native-vector-icons/FontAwesome";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
@@ -28,9 +28,9 @@ export default function Authorization({ setAuth }) {
                 {isLogin ? "SignUp" : "Login"}
               </Text>
             </Button>
-            <Text h2 style={styles.title}>
-              <Icon name="star" type="font-awesome" color="white"/>
-            </Text>
+            {/*<Text h2 style={styles.title}>*/}
+              {/*<Icon name="snowflake-o" color="white" size={20}/>*/}
+            {/*</Text>*/}
             <Text h2 style={styles.title}>
               RefereeAPP
             </Text>
@@ -74,5 +74,6 @@ const styles = StyleSheet.create({
   title: {
     color: "white",
     fontWeight: "bold",
+    marginHorizontal: 10
   },
 });

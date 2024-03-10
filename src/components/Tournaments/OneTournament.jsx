@@ -4,6 +4,7 @@ import { getTournament } from "../../api/tournaments";
 import { ButtonGroup } from "@rneui/themed";
 import Players from "./Players";
 import Teams from "./Teams";
+import Matches from "./Matches";
 
 
 export default function OneTournament({ navigation, route }) {
@@ -45,6 +46,17 @@ export default function OneTournament({ navigation, route }) {
             backgroundColor: "#15202b",
           }}
         />
+        {
+          selectedIndex === 0
+            ? <Matches
+              navigation={navigation}
+              title={title}
+              matchesList={tournament.matches || []}
+              tournamentId={tournamentId}
+              teamsList={tournament.teams || []}
+            />
+            : ""
+        }
         {
           selectedIndex === 1
             ? <Players
