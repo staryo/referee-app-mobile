@@ -6,7 +6,7 @@ import { Text } from "@rneui/themed";
 import Results from "./Results";
 
 
-export default function OneMatch({ navigation, route }) {
+export default function OneMatch({ route }) {
   const { matchId } = route.params;
   const [match, setMatch] = useState({})
 
@@ -19,14 +19,14 @@ export default function OneMatch({ navigation, route }) {
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <View style={{ flexDirection: "row", gap: 10 }}>
-          <Text style={{ color: "white", fontSize: 100 }}>
+        <View style={styles.flexRow}>
+          <Text style={styles.count}>
             {match?.team1count}
           </Text>
-          <Text style={{ color: "white", fontSize: 100 }}>
+          <Text style={styles.count}>
             -
           </Text>
-          <Text style={{ color: "white", fontSize: 100 }}>
+          <Text style={styles.count}>
             {match?.team2count}
           </Text>
         </View>
@@ -51,4 +51,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     width: "100%",
   },
+  count: {
+    color: "white",
+    fontSize: 100
+  },
+  flexRow: {
+    flexDirection: "row",
+    gap: 10
+  }
 });

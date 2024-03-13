@@ -19,5 +19,4 @@ async function createEvent(data) {
   }
 }
 
-
 export { createEvent };

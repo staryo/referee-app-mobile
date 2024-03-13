@@ -17,7 +17,7 @@ export default function Timer({ match, setMatch }) {
     } else {
       setCurrentTime({ now: 0 })
     }
-  }, [JSON.stringify(match)])
+  }, [match?.match?.start_time, match?.match?.is_period_completed])
 
   const handleStart = () => {
     startMatch({ id: match.match.id }).then(() => {

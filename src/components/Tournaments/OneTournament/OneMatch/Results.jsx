@@ -18,11 +18,11 @@ export default function Results({ match, setMatch }) {
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <Text h3 style={{ color: "white", marginVertical: 10 }}> Match results </Text>
+        <Text h3 style={{ color: "white", marginVertical: 10, alignSelf: "center" }}> Match results </Text>
         <ScrollView contentContainerStyle={styles.scrollView} refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}>
 
-          <View style={{ flexDirection: "row", gap: 50, justifyContent: "center" }}>
+          <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
             <Text style={{ color: "white", fontSize: 15, flex: 1 }}>
               Period
             </Text>
@@ -37,7 +37,7 @@ export default function Results({ match, setMatch }) {
           {
             events.map((goal) => {
                 return (
-                  <View key={goal.id} style={{ flexDirection: "row", gap: 50, justifyContent: "center" }}>
+                  <View key={goal.id} style={{ flexDirection: "row" }}>
                     <Text style={{ color: "white", fontSize: 15, flex: 1 }}>
                       {goal.period}
                     </Text>
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
