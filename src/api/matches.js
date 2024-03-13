@@ -16,4 +16,31 @@ async function createMatch(data) {
   }
 }
 
-export { createMatch };
+async function getMatch({ id }) {
+  try {
+    const result = await axios.get(`${BACKEND_URL}/match/data/${id}`);
+    return result.data
+  } catch (err) {
+    return new Promise((resolve, reject) => reject(err));
+  }
+}
+
+async function startMatch({ id }) {
+  try {
+    const result = await axios.get(`${BACKEND_URL}/match/start/${id}`);
+    return result.data
+  } catch (err) {
+    return new Promise((resolve, reject) => reject(err));
+  }
+}
+
+async function finishMatch({ id }) {
+  try {
+    const result = await axios.get(`${BACKEND_URL}/match/finish/${id}`);
+    return result.data
+  } catch (err) {
+    return new Promise((resolve, reject) => reject(err));
+  }
+}
+
+export { createMatch, getMatch, startMatch, finishMatch };

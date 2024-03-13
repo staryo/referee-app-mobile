@@ -2,7 +2,7 @@ import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { createPlayer } from "../../api/players";
+import { createPlayer } from "../../../api/players";
 
 
 export default function CreatePlayer({ navigation, route }) {

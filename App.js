@@ -7,10 +7,11 @@ import Tournaments from "./src/components/Tournaments/Tournaments";
 import { Icon } from "react-native-elements";
 import { logout } from "./src/api/auth";
 import CreateTournament from "./src/components/Tournaments/CreateTournament";
-import OneTournament from "./src/components/Tournaments/OneTournament";
-import CreatePlayer from "./src/components/Tournaments/CreatePlayer";
-import CreateTeam from "./src/components/Tournaments/CreateTeam";
-import CreateMatch from "./src/components/Tournaments/CreateMatch";
+import OneTournament from "./src/components/Tournaments/OneTournament/OneTournament";
+import CreatePlayer from "./src/components/Tournaments/OneTournament/CreatePlayer";
+import CreateTeam from "./src/components/Tournaments/OneTournament/CreateTeam";
+import CreateMatch from "./src/components/Tournaments/OneTournament/CreateMatch";
+import OneMatch from "./src/components/Tournaments/OneTournament/OneMatch/OneMatch";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -78,6 +79,11 @@ export default function App() {
             <Stack.Screen
               name="New Match"
               component={CreateMatch}
+              options={({ route }) => ({ title: route.params.title })}
+            />
+            <Stack.Screen
+              name="Match"
+              component={OneMatch}
               options={({ route }) => ({ title: route.params.title })}
             />
           </Stack.Navigator>

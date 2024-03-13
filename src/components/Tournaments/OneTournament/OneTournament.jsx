@@ -1,6 +1,6 @@
 import { SafeAreaView, StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
-import { getTournament } from "../../api/tournaments";
+import { getTournament } from "../../../api/tournaments";
 import { ButtonGroup } from "@rneui/themed";
 import Players from "./Players";
 import Teams from "./Teams";

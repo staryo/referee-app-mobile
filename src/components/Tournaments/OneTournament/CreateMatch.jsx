@@ -1,7 +1,7 @@
 import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useEffect, useState } from "react";
 import { Button, Text } from "@rneui/themed";
-import { createMatch } from "../../api/matches";
+import { createMatch } from "../../../api/matches";
 import { SelectList } from "react-native-dropdown-select-list"
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -59,7 +59,7 @@ export default function CreateMatch({ navigation, route }) {
         closeicon={<Icon name="chevron-down" color="white" size={20}/>}
         arrowicon={<Icon name="chevron-up" color="white" size={20}/>}
         boxStyles={{ borderRadius: 5, borderColor: "#ccc" }}
-        maxHeight={100}
+        maxHeight={200}
         save="key"
       />
       <SelectList
@@ -72,7 +72,7 @@ export default function CreateMatch({ navigation, route }) {
         closeicon={<Icon name="chevron-down" color="white" size={20}/>}
         arrowicon={<Icon name="chevron-up" color="white" size={20}/>}
         boxStyles={{ borderRadius: 5, borderColor: "#ccc" }}
-        maxHeight={100}
+        maxHeight={200}
         save="key"
       />
       <Button

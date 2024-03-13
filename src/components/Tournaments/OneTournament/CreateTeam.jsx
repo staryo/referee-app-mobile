@@ -2,7 +2,7 @@ import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { createTeam } from "../../api/teams";
+import { createTeam } from "../../../api/teams";
 
 
 export default function CreateTeam({ navigation, route }) {
