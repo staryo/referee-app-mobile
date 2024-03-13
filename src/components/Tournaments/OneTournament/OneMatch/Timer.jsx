@@ -71,7 +71,6 @@ export default function Timer({ match, setMatch }) {
   let minutes = String(Math.floor((currentTime?.now || 0) / 1000 / 60)).padStart(2, "0")
 
   if (minutes >= match?.match?.tournament?.default_period_duration) {
-    console.log(minutes)
     minutes = String(match?.match?.tournament?.default_period_duration).padStart(2, "0")
 
     seconds = String(0).padStart(2, "0")
