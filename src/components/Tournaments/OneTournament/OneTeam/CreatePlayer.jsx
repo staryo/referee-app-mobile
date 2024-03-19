@@ -2,12 +2,12 @@ import { Alert, StyleSheet, TextInput, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { createPlayer } from "../../../api/players";
+import { createPlayer } from "../../../../api/players";
 
 
 export default function CreatePlayer({ navigation, route }) {
 
-  const { tournamentId, title } = route.params
+  const { teamId, title } = route.params
 
   const [loadingState, setLoadingState] = useState(false);
   const [firstName, setFirstName] = useState("")
@@ -17,10 +17,10 @@ export default function CreatePlayer({ navigation, route }) {
   const handleCreate = async () => {
     setLoadingState(true);
     try {
-      await createPlayer({ firstName, lastName, description, tournamentId });
+      await createPlayer({ firstName, lastName, description, teamId });
       navigation.navigate(
-        "Tournament",
-        { title, tournamentId, check: Math.floor(Math.random() * 100) },
+        "Team",
+        { title, teamId, check: Math.floor(Math.random() * 100) },
       )
     } catch (error) {
       Alert.alert(`Error ${error}`);
@@ -30,6 +30,7 @@ export default function CreatePlayer({ navigation, route }) {
 
   return (
     <View style={styles.container}>
+      <Text h1 style={{ color: "white" }}> New Player </Text>
       <TextInput
         style={styles.input}
         onChangeText={setFirstName}

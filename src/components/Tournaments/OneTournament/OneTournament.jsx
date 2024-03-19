@@ -2,7 +2,6 @@ import { SafeAreaView, StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
 import { getTournament } from "../../../api/tournaments";
 import { ButtonGroup } from "@rneui/themed";
-import Players from "./Players";
 import Teams from "./Teams";
 import Matches from "./Matches";
 
@@ -23,7 +22,7 @@ export default function OneTournament({ navigation, route }) {
     <>
       <SafeAreaView style={styles.container}>
         <ButtonGroup
-          buttons={["MATCHES", "PLAYERS", "TEAMS"]}
+          buttons={["MATCHES", "TEAMS"]}
           buttonStyle={{
             backgroundColor: "#343a40",
             borderRadius: 10,
@@ -59,16 +58,6 @@ export default function OneTournament({ navigation, route }) {
         }
         {
           selectedIndex === 1
-            ? <Players
-              navigation={navigation}
-              title={title}
-              playersList={tournament.players || []}
-              tournamentId={tournamentId}
-            />
-            : ""
-        }
-        {
-          selectedIndex === 2
             ? <Teams
               navigation={navigation}
               title={title}

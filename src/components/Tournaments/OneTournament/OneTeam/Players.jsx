@@ -1,12 +1,17 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { RefreshControl, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { FAB, Text } from "@rneui/themed";
+import { useState } from "react";
 
 
-export default function Players({ navigation, title, playersList, tournamentId }) {
+export default function Players({ navigation, title, playersList, teamId }) {
+  const [refreshing, setRefreshing] = useState(false);
+
   return (
-    <>
+    <SafeAreaView style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.scrollView}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => {
+        }}/>}
       >
 
         {playersList
@@ -62,13 +67,19 @@ export default function Players({ navigation, title, playersList, tournamentId }
           )}
       </ScrollView>
       <FAB placement="right" icon={{ name: "add", color: "white" }} onPress={() => {
-        navigation.navigate("New Player", { title, tournamentId })
+        navigation.navigate("New Player", { title, teamId })
       }}/>
-    </>
+    </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#15202b",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    width: "100%",
+  },
   scrollView: {
     flex: 1,
     alignItems: "center",

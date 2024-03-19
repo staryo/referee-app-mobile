@@ -6,7 +6,7 @@ async function createTeam(data) {
   try {
     const result = await axios.post(`${BACKEND_URL}/team/create`, {
       team_name: teamName,
-      tournament_id: tournamentId,
+      team_id: tournamentId,
     });
     return result.data
   } catch (err) {
@@ -14,4 +14,13 @@ async function createTeam(data) {
   }
 }
 
-export { createTeam };
+async function getTeam({ id }) {
+  try {
+    const result = await axios.get(`${BACKEND_URL}/team/data/${id}`);
+    return result.data
+  } catch (err) {
+    return new Promise((resolve, reject) => reject(err));
+  }
+}
+
+export { createTeam, getTeam };
