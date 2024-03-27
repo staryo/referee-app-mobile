@@ -5,11 +5,10 @@ import { SelectList } from "react-native-dropdown-select-list"
 import Icon from "react-native-vector-icons/FontAwesome";
 import { createEvent } from "../../../../api/events";
 import { getTeam } from "../../../../api/teams";
-import { getMatch } from "../../../../api/matches";
 
 export default function RegisterGoal({ navigation, route }) {
 
-  const { matchId, period, time, teamNumber, teamId, setMatch } = route.params;
+  const { matchId, period, time, teamNumber, teamId } = route.params;
 
   const [loadingState, setLoadingState] = useState(false);
   const [author, setAuthor] = useState(undefined)
@@ -27,12 +26,9 @@ export default function RegisterGoal({ navigation, route }) {
     setLoadingState(true);
     try {
       await createEvent({ matchId, goalAuthorId: author, time, period, teamNumber, assistAuthorId: 0 });
-      getMatch({ id: matchId }).then((res) => {
-        setMatch(res)
-      })
       navigation.navigate(
         "Match",
-        { matchId },
+        { matchId, check: Math.floor(Math.random() * 100) },
       )
     } catch (error) {
       Alert.alert(`Error ${error}`);

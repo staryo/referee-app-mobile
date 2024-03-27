@@ -30,7 +30,6 @@ export default function App() {
 
   return (
     <>
-
       {auth
         ?
         <NavigationContainer>

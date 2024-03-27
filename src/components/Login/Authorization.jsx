@@ -1,7 +1,6 @@
-import { StyleSheet, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import { useState } from "react";
 import { Button, Text } from "@rneui/themed";
-import Icon from "react-native-vector-icons/FontAwesome";
 import Login from "./Login";
 import SignUp from "./SignUp";
 
@@ -10,15 +9,15 @@ export default function Authorization({ setAuth }) {
 
   return (
     <>
-      <View style={styles.container}>
-        <View style={{ paddingBottom: 20, width: "100%", gap: 10, alignItems: "center", backgroundColor: "#343a40" }}>
-          <View style={{ gap: 10, flexDirection: "row", alignItems: "center", marginTop: 50 }}>
+      <SafeAreaView style={styles.container}>
+        <View style={{ paddingVertical: 20, width: "100%", gap: 10, alignItems: "center", backgroundColor: "#343a40" }}>
+          <View style={{ gap: 10, flexDirection: "row", alignItems: "center" }}>
             <Button
               size="sm"
               buttonStyle={{
                 height: 40,
                 borderRadius: 10,
-                borderColor: 'white'
+                borderColor: "white",
               }}
               type="outline"
               onPress={() => {
@@ -28,9 +27,6 @@ export default function Authorization({ setAuth }) {
                 {isLogin ? "SignUp" : "Login"}
               </Text>
             </Button>
-            {/*<Text h2 style={styles.title}>*/}
-              {/*<Icon name="snowflake-o" color="white" size={20}/>*/}
-            {/*</Text>*/}
             <Text h2 style={styles.title}>
               RefereeAPP
             </Text>
@@ -45,7 +41,7 @@ export default function Authorization({ setAuth }) {
             setAuth={setAuth}
           />
         }
-      </View>
+      </SafeAreaView>
     </>
   );
 }
@@ -56,10 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#15202b",
     alignItems: "center",
     justifyContent: "flex-start",
-    gap: 20,
     width: "100%",
-    alignSelf: "center",
-    height: "100%",
   },
   input: {
     width: "100%",
@@ -74,6 +67,6 @@ const styles = StyleSheet.create({
   title: {
     color: "white",
     fontWeight: "bold",
-    marginHorizontal: 10
+    marginHorizontal: 10,
   },
 });

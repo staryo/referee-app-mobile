@@ -3,10 +3,11 @@ import { BACKEND_URL } from "../const";
 
 async function createTeam(data) {
   const { teamName, tournamentId } = data;
+  console.log(data)
   try {
     const result = await axios.post(`${BACKEND_URL}/team/create`, {
       team_name: teamName,
-      team_id: tournamentId,
+      tournament_id: tournamentId,
     });
     return result.data
   } catch (err) {

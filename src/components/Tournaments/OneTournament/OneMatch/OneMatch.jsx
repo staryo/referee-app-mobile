@@ -7,14 +7,14 @@ import Results from "./Results";
 
 
 export default function OneMatch({ navigation, route }) {
-  const { matchId } = route.params;
+  const { matchId, check } = route.params;
   const [match, setMatch] = useState({})
 
   useEffect(() => {
     getMatch({ id: matchId }).then((res) => {
       setMatch(res)
     })
-  }, []);
+  }, [check]);
 
   return (
     <>
