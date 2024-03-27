@@ -26,26 +26,33 @@ export default function Results({ match, setMatch }) {
             <Text style={{ color: "white", fontSize: 15, flex: 1 }}>
               Period
             </Text>
-            <Text style={{ color: "white", fontSize: 15, flex: 2 }}>
+            <Text style={{ color: "white", fontSize: 15, flex: 1 }}>
               Time
             </Text>
             <Text style={{ color: "white", fontSize: 15, flex: 2 }}>
               Team
             </Text>
+            <Text style={{ color: "white", fontSize: 15, flex: 2 }}>
+              Author
+            </Text>
 
           </View>
           {
             events.map((goal) => {
+              const author = goal.players.filter((player) => player.event_player.is_author)[0]
                 return (
                   <View key={goal.id} style={{ flexDirection: "row" }}>
                     <Text style={{ color: "white", fontSize: 15, flex: 1 }}>
                       {goal.period}
                     </Text>
-                    <Text style={{ color: "white", fontSize: 15, flex: 2 }}>
-                      {goal.time}
+                    <Text style={{ color: "white", fontSize: 15, flex: 1 }}>
+                      {goal.time.split(':').splice(1,2).join(":")}
                     </Text>
                     <Text style={{ color: "white", fontSize: 15, flex: 2 }}>
                       {goal.team_number === 1 ? match.match.team1.team_name : match.match.team2.team_name}
+                    </Text>
+                    <Text style={{ color: "white", fontSize: 15, flex: 2 }}>
+                      {author?.first_name[0]}{author ? "." : ""} {author?.last_name}
                     </Text>
                   </View>
                 )
