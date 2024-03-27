@@ -2,9 +2,8 @@ import { Button, Text } from "@rneui/themed";
 import { Vibration, View } from "react-native";
 import { useEffect, useState } from "react";
 import { finishMatch, getMatch, startMatch } from "../../../../api/matches";
-import { createEvent } from "../../../../api/events";
 
-export default function Timer({ match, setMatch }) {
+export default function Timer({ navigation, match, setMatch }) {
   const [currentTime, setCurrentTime] = useState(undefined)
   useEffect(() => {
     const start = match?.match?.start_time
@@ -35,36 +34,28 @@ export default function Timer({ match, setMatch }) {
     })
   }
 
+  const handleGoal = (teamNumber) => {
+    navigation.navigate(
+      "RegisterGoal",
+      {
+        title: match.match.name,
+        matchId: match.match.id,
+        period: match.match.current_period,
+        time: Math.floor((currentTime?.now || 0) / 1000 % 60) +
+          Math.floor((currentTime?.now || 0) / 1000 / 60) * 100,
+        teamNumber: teamNumber,
+        teamId: teamNumber === 1 ? match.match.team1Id : match.match.team2Id,
+        setMatch: setMatch,
+      },
+    )
+  }
+
   const handleEventFirst = () => {
-    createEvent({
-      matchId: match.match.id,
-      goalAuthorId: 0,
-      time: Math.floor((currentTime?.now || 0) / 1000 % 60) + Math.floor((currentTime?.now || 0) / 1000 / 60) * 100,
-      period: match.match.current_period,
-      teamNumber: 1,
-      assistAuthorId: 0,
-    }).then(() => {
-      getMatch({ id: match.match.id }).then((res) => {
-        setMatch(res)
-      })
-    })
+    handleGoal(1)
   }
 
   const handleEventSecond = () => {
-    createEvent({
-      matchId: match.match.id,
-      goalAuthorId: 0,
-      time: Math.floor((currentTime?.now || 0) / 1000 % 60) + Math.floor((currentTime?.now || 0) / 1000 / 60) * 100,
-      period: match.match.current_period,
-      teamNumber: 2,
-      assistAuthorId: 0,
-    }).then(() => {
-      getMatch({ id: match.match.id }).then((res) => {
-        setMatch(res)
-      })
-    }).catch((err) => {
-      console.log(err)
-    })
+    handleGoal(2)
   }
 
   let seconds = String(Math.floor((currentTime?.now || 0) / 1000 % 60)).padStart(2, "0")

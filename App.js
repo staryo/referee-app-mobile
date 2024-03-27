@@ -13,6 +13,7 @@ import CreateTeam from "./src/components/Tournaments/OneTournament/CreateTeam";
 import CreateMatch from "./src/components/Tournaments/OneTournament/CreateMatch";
 import OneMatch from "./src/components/Tournaments/OneTournament/OneMatch/OneMatch";
 import OneTeam from "./src/components/Tournaments/OneTournament/OneTeam/OneTeam";
+import RegisterGoal from "./src/components/Tournaments/OneTournament/OneMatch/RegisterGoal";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -90,6 +91,11 @@ export default function App() {
             <Stack.Screen
               name="Team"
               component={OneTeam}
+              options={({ route }) => ({ title: route.params.title })}
+            />
+            <Stack.Screen
+              name="RegisterGoal"
+              component={RegisterGoal}
               options={({ route }) => ({ title: route.params.title })}
             />
           </Stack.Navigator>

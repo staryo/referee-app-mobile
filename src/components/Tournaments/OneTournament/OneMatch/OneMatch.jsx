@@ -6,7 +6,7 @@ import { Text } from "@rneui/themed";
 import Results from "./Results";
 
 
-export default function OneMatch({ route }) {
+export default function OneMatch({ navigation, route }) {
   const { matchId } = route.params;
   const [match, setMatch] = useState({})
 
@@ -34,7 +34,7 @@ export default function OneMatch({ route }) {
         {
           match?.match?.current_period + (match?.match?.is_period_completed ? 1 : 0)
           <= match?.match?.tournament?.default_number_of_periods
-            ? <Timer match={match} setMatch={setMatch}/>
+            ? <Timer navigation={navigation} match={match} setMatch={setMatch}/>
             : ""
         }
         <Results match={match} setMatch={setMatch}/>
